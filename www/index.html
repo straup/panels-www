@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+  <head>
+    <title>panels</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
+    <link rel="stylesheet" type="text/css" href="css/panels.css" />
+    <script type="text/javascript" src="javascript/panels.js"></script>
+    <script type="text/javascript" src="javascript/localforage.js"></script>
+  </head>
+  <body>
+    <div id="page">
+
+      <div class="header">
+	<a id="new" class="navbtn" onclick="newCanvas()">New</a>
+	<a id="save" class="navbtn" onclick="saveCanvas()">Save</a>
+	<a id="load" class="navbtn" onclick="loadCanvas()">Load</a>
+	<a id="delete" class="navbtn" onclick="deleteCanvas()">Delete</a>
+	<select id="load-sel" class="navbtn"  onchange="openCanvas(this)">
+	</select>
+        <!--<div class="title">Sketch Pad</div>-->
+      </div>
+
+      <div id="content"><p style="text-align:center">Loading Canvas...</p></div>
+
+      <div class="footer">
+
+	<select id="line-width" class="navbtn"  onchange="setLineWidth(this);">
+	  <option value="1">1</option>
+	  <option value="1">2</option>
+	  <option value="5">5</option>
+	  <option value="10">10</option>
+	  <option value="20">20</option>
+	  <option value="50">50</option>
+	</select>
+
+	<div class="palette-case">
+	  <div class="palette-box">
+	    <div class="palette white" onclick="selectColor(this)"></div>
+	  </div>	
+	  <div class="palette-box">
+	    <div class="palette grey" onclick="selectColor(this)"></div>
+	  </div>
+	  <div class="palette-box">
+	    <div class="palette blue" onclick="selectColor(this)"></div>
+	  </div>
+	  <div class="palette-box">
+	    <div class="palette black" onclick="selectColor(this)"></div>
+	  </div>		
+	  <div style="clear:both"></div>
+	</div>
+
+      </div>
+
+    </div> 
+  </body>
+</html>
