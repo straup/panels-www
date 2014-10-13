@@ -7,10 +7,12 @@ document.addEventListener( "DOMContentLoaded", function(){
 	    }, 500);
 
 	/*
-    setTimeout(function(){
-	newCanvas();
-    }, 1000);
+	  setTimeout(function(){
+	  newCanvas();
+	  }, 1000);
 	*/
+
+	// process any pending uploads...
     
 }, false );
 
@@ -84,24 +86,32 @@ function uploadCanvas(){
 	return false;
     }
 
-    try {
-	var blob = panels_utils_data_uri_to_blob(data);
-    }
-    
-    catch(e){
-	console.log("failed to convert data to blob");
-	console.log(e);
-	return false;
-    }
+    var dt = new Date();
+    var pending_id = window.btoa(dt.toISOString());
+	    
+    var pending_key = "pending_" + pending_id;
 
-    if (! confirm("Are you sure you want to upload this?")){
-	return false;
-    }
-    
-    doUploadCanvas(blob);
+    localforage.setItem(pending_key, data, function(rsp){
+
+	    localforage.getItem(pending_key, function(rsp){
+
+		    try {
+			var blob = panels_utils_data_uri_to_blob(data);
+		    }
+		    
+		    catch(e){
+			console.log("failed to convert data to blob");
+			console.log(e);
+			return false;
+		    }
+		    
+		    doUploadCanvas(blob, pending_id);		    
+		});
+	});
+
 }
 
-function doUploadCanvas(file){
+function doUploadCanvas(file, pending_id){
 
     console.log(file);
 
@@ -122,6 +132,14 @@ function doUploadCanvas(file){
 
     };
         
+    var pending_key = "pending_" + pending_id;
+    console.log(pending_key);
+
+    localforage.removeItem(pending_key, function(rsp){
+	    console.log("removed " + pending_key);
+	    console.log(rsp);
+	});
+
     /*
     $.ajax({
 	url: 'https://upload.example.com/',
@@ -152,7 +170,14 @@ function loadCanvas(){
 
 	var html = '<option value="-1">...</option>';
 
+	var re_pending = /^pending_(.*)/;
+
 	for (var i=0; i < count; i++){
+
+	    if (keys[i].match(re_pending)){
+		continue;
+	    }
+
 	    html += '<option value="';
 	    html += keys[i];
 	    html += '">';
