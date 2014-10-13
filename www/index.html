@@ -5,22 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
     <link rel="stylesheet" type="text/css" href="css/panels.css" />
     <script type="text/javascript" src="javascript/panels.js"></script>
+    <script type="text/javascript" src="javascript/panels.utils.js"></script>
     <script type="text/javascript" src="javascript/localforage.js"></script>
   </head>
   <body>
     <div id="page">
 
       <div class="header">
+	<select id="load-sel" class="navbtn"  onchange="openCanvas(this)" style="display:none;"></select>
+
 	<a id="new" class="navbtn" onclick="newCanvas()">New</a>
+
+	<span id="controls" style="display:none;">
 	<a id="save" class="navbtn" onclick="saveCanvas()">Save</a>
-	<a id="load" class="navbtn" onclick="loadCanvas()">Load</a>
+	<a id="upload" class="navbtn" onclick="uploadCanvas()">Upload</a>
 	<a id="delete" class="navbtn" onclick="deleteCanvas()">Delete</a>
-	<select id="load-sel" class="navbtn"  onchange="openCanvas(this)">
-	</select>
-        <!--<div class="title">Sketch Pad</div>-->
+	</span>
+
       </div>
 
-      <div id="content"><p style="text-align:center">Loading Canvas...</p></div>
+      <div id="content"></div>
 
       <div class="footer">
 

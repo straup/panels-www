@@ -1,11 +1,16 @@
 var ctx, color = "#000";	
 
 document.addEventListener( "DOMContentLoaded", function(){
-    
-    // setup a new canvas for drawing wait for device init
+
+	setTimeout(function(){
+		loadCanvas();
+	    }, 500);
+
+	/*
     setTimeout(function(){
 	newCanvas();
     }, 1000);
+	*/
     
 }, false );
 
@@ -25,20 +30,33 @@ function newCanvas(){
     drawTouch();
     drawPointer();
     drawMouse();
+
+    var controls = document.getElementById('controls');
+    controls.style.display = 'block';
 }
 
-function saveCanvas(){
+function saveCanvas(cb){
 
     var canvas = document.getElementById('canvas');
     var t = canvas.getAttribute("data-canvas-key");
 
+    if (t == null){
+	t = '';
+    }
+
     var title = prompt("What would you like to call this?", t);
 
-    if (! confirm("Okay, are you sure you want to save this?")){
+    if (title == ''){
+	alert("You need to give this a name, silly.");
 	return false;
     }
 
     var data = canvas.toDataURL();
+
+    if (isEmptyCanvas(data)){
+	alert("Your canvas is empty. There's nothing to save!");
+	return false;
+    }
 
     var dt = new Date();
     var ts = dt.getTime();
@@ -49,9 +67,76 @@ function saveCanvas(){
     };
     
     localforage.setItem(title, value, function(rsp){
-	alert('stored');
-	console.log('stored');
+
+	if (cb){
+	    cb(rsp);
+	}
     });
+}
+
+function uploadCanvas(){
+
+    var canvas = document.getElementById('canvas');
+    var data = canvas.toDataURL();
+
+    if (isEmptyCanvas(data)){
+	alert("Your canvas is empty. There's nothing to save!");
+	return false;
+    }
+
+    try {
+	var blob = panels_utils_data_uri_to_blob(data);
+    }
+    
+    catch(e){
+	console.log("failed to convert data to blob");
+	console.log(e);
+	return false;
+    }
+
+    if (! confirm("Are you sure you want to upload this?")){
+	return false;
+    }
+    
+    doUploadCanvas(blob);
+}
+
+function doUploadCanvas(file){
+
+    console.log(file);
+
+    var data = new FormData();
+    data.append('photo', file);
+
+    var on_success = function(rsp){
+
+	/*
+	localforage.removeItem(key, function(rsp){
+	    
+	});
+	*/
+
+    };
+    
+    var on_error = function(rsp){
+
+    };
+        
+    /*
+    $.ajax({
+	url: 'https://upload.example.com/',
+	type: "POST",
+	data: data,
+	cache: false,
+	contentType: false,
+	processData: false,
+	dataType: "json",
+	success: on_success,
+	error: on_error,
+    });
+    */
+
+    return false;
 }
 
 function loadCanvas(){
@@ -65,7 +150,7 @@ function loadCanvas(){
 	    return;
 	}
 
-	var html = '<option value="-1"></option>';
+	var html = '<option value="-1">...</option>';
 
 	for (var i=0; i < count; i++){
 	    html += '<option value="';
@@ -77,6 +162,8 @@ function loadCanvas(){
 
 	var sel = document.getElementById('load-sel');
 	sel.innerHTML = html;
+
+	sel.style.display = 'block';
     });
 
 }
@@ -211,3 +298,16 @@ var drawMouse = function() {
     document.getElementById("canvas").addEventListener("mousemove", move, false);
     document.addEventListener("mouseup", stop, false);
 };
+
+function isEmptyCanvas(data){
+
+    if (data == emptyCanvas()){
+	return 1;
+    }
+
+    return 0;
+}
+
+function emptyCanvas() {
+    return "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABR8AAAFqCAYAAACTYS29AAAHR0lEQVR4nO3BMQEAAADCoPVPbQhfoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIDfAPpmAAGv4H11AAAAAElFTkSuQmCC"
+}
