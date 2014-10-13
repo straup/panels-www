@@ -113,47 +113,37 @@ function uploadCanvas(){
 
 function doUploadCanvas(file, pending_id){
 
-    console.log(file);
-
     var data = new FormData();
     data.append('photo', file);
 
-    var on_success = function(rsp){
+    data.append('access_token', null);
+    data.append('crumb', null);
+    data.append('method', null);
 
-	/*
-	localforage.removeItem(key, function(rsp){
-	    
-	});
-	*/
+    var endpoint = null;
+
+    var req = new XMLHttpRequest();
+    req.open("POST", endpoint, true);
+
+    req.onload = function(e){
+
+	if (req.status == 200){
+
+	    var pending_key = "pending_" + pending_id;
+
+	    localforage.removeItem(pending_key, function(rsp){
+		    console.log("removed " + pending_key);
+		    console.log(rsp);
+		});
+	}
+
+	else {
+	    console.log(pending_key);
+	}
 
     };
-    
-    var on_error = function(rsp){
 
-    };
-        
-    var pending_key = "pending_" + pending_id;
-    console.log(pending_key);
-
-    localforage.removeItem(pending_key, function(rsp){
-	    console.log("removed " + pending_key);
-	    console.log(rsp);
-	});
-
-    /*
-    $.ajax({
-	url: 'https://upload.example.com/',
-	type: "POST",
-	data: data,
-	cache: false,
-	contentType: false,
-	processData: false,
-	dataType: "json",
-	success: on_success,
-	error: on_error,
-    });
-    */
-
+    req.send(data);
     return false;
 }
 
