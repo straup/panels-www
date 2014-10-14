@@ -22,6 +22,10 @@
 	<a id="delete" class="navbtn" onclick="deleteCanvas()">Delete</a>
 	</span>
 
+	<form onsubmit="return false;">
+	  <input type="file" name="file" id="import" />
+	  <button type="submit" onclick="importFile()">Import</button>
+	</form>
       </div>
 
       <div id="content"></div>
@@ -56,5 +60,14 @@
       </div>
 
     </div> 
+
+    <script type="text/javascript">
+
+      document.addEventListener( "DOMContentLoaded", function(){
+      panels_init();
+      }, false );
+
+    </script>
+
   </body>
 </html>

@@ -1,20 +1,12 @@
 var ctx, color = "#000";	
 
-document.addEventListener( "DOMContentLoaded", function(){
+function panels_init(){
 
-	setTimeout(function(){
-		loadCanvas();
-	    }, 500);
+    setTimeout(function(){
+	    loadCanvas();
+	}, 500);
 
-	/*
-	  setTimeout(function(){
-	  newCanvas();
-	  }, 1000);
-	*/
-
-	// process any pending uploads...
-    
-}, false );
+}
 
 // function to setup a new canvas for drawing
 function newCanvas(){
@@ -76,7 +68,45 @@ function saveCanvas(cb){
     });
 }
 
+function importFile(){
+    console.log("import");
+
+    var imp = document.getElementById('import');
+    var files = imp.files;
+
+    var file = files[0];
+
+    if (! file){
+	alert("There's nothing to import!");
+	return false;
+    }
+
+    var name = file.name;
+
+    try {
+	var reader = new FileReader();
+	    
+	reader.onload = function(evt){
+	    newCanvas();
+	    drawCanvas(evt.target.result, name);
+	};
+	
+	reader.readAsDataURL(file)
+    }
+    
+    catch(e){
+	
+	alert("Ack!");
+	return false;
+    }
+    
+    return false;
+}
+
 function uploadCanvas(){
+
+    alert("Disabled");
+    return false;
 
     var canvas = document.getElementById('canvas');
     var data = canvas.toDataURL();
@@ -188,22 +218,28 @@ function openCanvas(el){
     var key = el.value;
 
     localforage.getItem(key, function(rsp){
-
 	newCanvas();
-
-        var canvas = document.getElementById('canvas');
-	canvas.setAttribute('data-canvas-key', key);
-
-        var context = canvas.getContext('2d');
-
-        var imageObj = new Image();
-
-        imageObj.onload = function() {
-            context.drawImage(this, 0, 0);
-        };
-
-        imageObj.src = rsp['data'];
+	drawCanvas(rsp['data'], key);
     });
+}
+
+function drawCanvas(data, key){
+
+    var canvas = document.getElementById('canvas');
+
+    if (key){
+	canvas.setAttribute('data-canvas-key', key);
+    }
+
+    var context = canvas.getContext('2d');
+    
+    var imageObj = new Image();
+    
+    imageObj.onload = function() {
+	context.drawImage(this, 0, 0);
+    };
+    
+    imageObj.src = data;
 }
 
 function deleteCanvas(){
