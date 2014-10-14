@@ -8,6 +8,16 @@ function panels_init(){
 
 }
 
+function toggleControls(){
+    var c = document.getElementById("header-controls");
+    var d = getComputedStyle(c).display;
+
+    var display = (d=='none') ? 'inline' : 'none';
+    c.style.display = display;
+
+    return false;
+}
+
 // function to setup a new canvas for drawing
 function newCanvas(){
     //define and resize canvas

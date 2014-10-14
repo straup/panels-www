@@ -12,20 +12,26 @@
     <div id="page">
 
       <div class="header">
-	<select id="load-sel" class="navbtn"  onchange="openCanvas(this)" style="display:none;"></select>
 
-	<a id="new" class="navbtn" onclick="newCanvas()">New</a>
+	<button id="header-toggle" style="float:right;font-weight:700;font-size:1.5em;" onclick="toggleControls()">M</button>
 
-	<span id="controls" style="display:none;">
-	<a id="save" class="navbtn" onclick="saveCanvas()">Save</a>
-	<a id="upload" class="navbtn" onclick="uploadCanvas()">Upload</a>
-	<a id="delete" class="navbtn" onclick="deleteCanvas()">Delete</a>
-	</span>
+	<ul id="header-controls">
+	  <li><select id="load-sel" class="navbtn"  onchange="openCanvas(this)" style="display:none;"></select></li>
 
-	<form onsubmit="return false;">
+	  <li><button id="new" class="navbtn" onclick="newCanvas()">New</button></li>
+
+	  <li><button id="save" class="navbtn" onclick="saveCanvas()">Save</button></li>
+	  <li><button id="upload" class="navbtn" onclick="uploadCanvas()">Upload</button></li>
+	  <li><button id="delete" class="navbtn" onclick="deleteCanvas()">Delete</button></li>
+
+	  <li>
+
 	  <input type="file" name="file" id="import" />
 	  <button type="submit" onclick="importFile()">Import</button>
-	</form>
+	</li>
+
+	  </ul>
+
       </div>
 
       <div id="content"></div>

@@ -18,7 +18,7 @@ body {
 .header, .footer{
     position: absolute;
     background-color: #fff;
-    text-align: center;
+    /* text-align: center; */
 }
 .header {
     top: 0px;
@@ -28,6 +28,28 @@ body {
     padding:6px;
     border-bottom:1px solid #000;
 }
+
+#header-controls {
+	display:none;
+}
+
+#header-controls li {
+	display:inline !important;
+	list-style-type: none;	
+}
+
+#header-controls li input {
+	display:inline !important;
+}
+
+#header-controls li select {
+	display:inline !important;
+}
+
+#header-controls button {
+	border: solid thin;		 
+}
+
 .footer {
     bottom: 0px;
     left: 0px;
@@ -44,7 +66,7 @@ body {
     text-shadow: 0px -1px #000;
     padding:0 60px;
 }
-.navbtn {
+.navbtn-x {
     cursor: pointer;
     float:left;
     padding: 6px 10px;
