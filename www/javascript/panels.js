@@ -45,8 +45,12 @@ function hideControls(){
 // function to setup a new canvas for drawing
 function newCanvas(){
     //define and resize canvas
-    document.getElementById("content").style.height = window.innerHeight-90;
+    //document.getElementById("content").style.height = window.innerHeight-90;
+    document.getElementById("content").style.height = window.innerHeight;
     var canvas = '<canvas id="canvas" width="'+window.innerWidth+'" height="'+(window.innerHeight-90)+'"></canvas>';
+    var canvas = '<canvas id="canvas" width="'+window.innerWidth+'" height="'+(window.innerHeight)+'"></canvas>';
+    // var canvas = '<canvas id="canvas" width="'+ 2048 +'" height="'+ 2048 +'"></canvas>';
+
     document.getElementById("content").innerHTML = canvas;
     
     // setup canvas
@@ -344,6 +348,7 @@ var drawPointer = function() {
 	ctx.beginPath();
 	x = e.pageX;
 	y = e.pageY-44;
+	//y = e.pageY;
 	ctx.moveTo(x,y);
     };
     var move = function(e) {
@@ -351,6 +356,7 @@ var drawPointer = function() {
         e = e.originalEvent;
 	x = e.pageX;
 	y = e.pageY-44;
+	//y = e.pageY;
 	ctx.lineTo(x,y);
 	ctx.stroke();
     };
@@ -366,12 +372,14 @@ var drawMouse = function() {
 	ctx.beginPath();
 	x = e.pageX;
 	y = e.pageY-44;
+	//y = e.pageY;
 	ctx.moveTo(x,y);
     };
     var move = function(e) {
 	if(clicked){
 	    x = e.pageX;
 	    y = e.pageY-44;
+	    //y = e.pageY;
 	    ctx.lineTo(x,y);
 	    ctx.stroke();
 	}
