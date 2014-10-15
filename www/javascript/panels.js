@@ -4,6 +4,7 @@ function panels_init(){
 
     setTimeout(function(){
 	    loadCanvas();
+	    newCanvas();
 	}, 500);
 
 }
