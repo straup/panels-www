@@ -9,26 +9,19 @@ function panels_init(){
 
 }
 
-/*
-function toggleControls(){
-
-    var c = document.getElementById("header-controls");
-    var d = getComputedStyle(c).display;
-
-    var display = (d=='none') ? 'inline' : 'none';
-    c.style.display = display;
-
-    return false;
-}
-*/
-
 function showControls(){
 
     var h = document.getElementById("header-controls");
     var f = document.getElementById("footer-controls");
 
-    h.style.display = 'inline';
-    f.style.display = 'inline';
+    if (getComputedStyle(h).display == 'none'){
+	h.style.display = 'inline';
+    }
+
+    if (getComputedStyle(f).display == 'none'){
+	f.style.display = 'inline';
+    }
+
     return false;
 }
 
@@ -37,8 +30,14 @@ function hideControls(){
     var h = document.getElementById("header-controls");
     var f = document.getElementById("footer-controls");
 
-    h.style.display = 'none';
-    f.style.display = 'none';
+    if (getComputedStyle(h).display != 'none'){
+	h.style.display = 'none';
+    }
+
+    if (getComputedStyle(f).display != 'none'){
+	f.style.display = 'none';
+    }
+
     return false;
 }
 
