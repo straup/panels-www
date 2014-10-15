@@ -9,13 +9,36 @@ function panels_init(){
 
 }
 
+/*
 function toggleControls(){
+
     var c = document.getElementById("header-controls");
     var d = getComputedStyle(c).display;
 
     var display = (d=='none') ? 'inline' : 'none';
     c.style.display = display;
 
+    return false;
+}
+*/
+
+function showControls(){
+
+    var h = document.getElementById("header-controls");
+    var f = document.getElementById("footer-controls");
+
+    h.style.display = 'inline';
+    f.style.display = 'inline';
+    return false;
+}
+
+function hideControls(){
+
+    var h = document.getElementById("header-controls");
+    var f = document.getElementById("footer-controls");
+
+    h.style.display = 'none';
+    f.style.display = 'none';
     return false;
 }
 
@@ -36,8 +59,8 @@ function newCanvas(){
     drawPointer();
     drawMouse();
 
-    var controls = document.getElementById('controls');
-    controls.style.display = 'block';
+    // var controls = document.getElementById('controls');
+    // controls.style.display = 'block';
 }
 
 function saveCanvas(cb){

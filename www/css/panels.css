@@ -20,8 +20,9 @@ body {
     background-color: #fff;
 }
 .header {
-    min-height:3em;
+    min-height:1em;
     border-bottom:1px solid #000;
+    padding:.5em;
 }
 
 #header-controls {
@@ -29,7 +30,7 @@ body {
 }
 
 #header-controls li {
-	display:inline !important;
+	display:inline !important; 
 	list-style-type: none;	
 }
 
@@ -43,7 +44,7 @@ body {
 }
 
 #footer-controls {
-	display:inline !important;
+	display:none;
 }
 
 #footer-controls li {
@@ -64,8 +65,7 @@ body {
     bottom: 0px;
     left: 0px;
     right: 0px;
-    height: 3em;
-    padding:1em;
+    padding:.5em;
     border-top: solid thin;
 }
 

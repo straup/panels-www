@@ -11,9 +11,9 @@
   <body>
     <div id="page">
 
-      <div class="header">
+      <div class="header" onmouseover="showControls()" onmouseout="hideControls()">
 
-	<button id="header-toggle" style="float:right;font-weight:700;font-size:1.5em;" onclick="toggleControls()">M</button>
+	<div style="float:right;font-size:small;">panels</div>
 
 	<ul id="header-controls">
 	  <li><select id="load-sel" class="navbtn"  onchange="openCanvas(this)" style="display:none;"></select></li>
@@ -36,7 +36,7 @@
 
       <div id="content"></div>
 
-      <div class="footer">
+      <div class="footer" onmouseover="showControls()" onmouseout="hideControls()">
 
 	<ul id="footer-controls">
 
