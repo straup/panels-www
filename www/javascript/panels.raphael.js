@@ -5,7 +5,7 @@ function panels_init(){
     panels_load_panels();
 }
 
-function panels_new_panel(data){
+function panels_new_panel(data, key){
 
     var w = '100%';
     var h = 500;
@@ -17,11 +17,22 @@ function panels_new_panel(data){
     };
 
     if (data){
-	var strokes = JSON.parse(data);
-	args['strokes'] = strokes;
-    }
 
-    console.log(args);
+	try {
+	    var strokes = JSON.parse(data);
+	    args['strokes'] = strokes;
+	}
+
+	catch (e){
+
+	    console.log("failed to load " + key);
+	    alert("Failed to load that document because " + e);
+
+	    if (confirm("Should it be removed?")){
+		panels_delete_panel(key);
+	    }
+	}
+    }
 
     sketchpad = Raphael.sketchpad("editor", args);
 }
@@ -43,7 +54,10 @@ function panels_save_panel(t){
     }
     
     var cb = function(rsp){
+
+	console.log("SAVE");
 	console.log(rsp);
+
 	panels_load_panels();
     };
     
@@ -93,17 +107,16 @@ function panels_open_canvas(el){
     console.log("open " + key);
 
     var cb = function(rsp){
-	panels_new_panel(rsp['data']);
+	console.log("NEW W/ " + key);
+	panels_new_panel(rsp['data'], key);
     };
 
     panels_storage_load(key, cb);
 }
 
-function panels_delete_panel(){
+function panels_delete_panel(key){
 
-    var key = '';
-
-    if (! confirm("Are you sure you want to delete this")){
+    if (! confirm("Are you sure you want to delete " + key + "?")){
 	return;
     }
 
