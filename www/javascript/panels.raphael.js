@@ -89,11 +89,6 @@ function panels_load_panels(){
 
 	var count = keys.length;
 
-	if (! count){
-	    alert("Nothing to load");
-	    return;
-	}
-
 	var html = '<option value="-1">...</option>';
 
 	var re_pending = /^pending_(.*)/;
@@ -142,6 +137,8 @@ function panels_delete_panel(key){
 	if (! panels_ui_confirm("Are you sure you want to delete " + key + "?")){
 	    return false;
 	}
+
+	$("#editor").removeAttr("data-panel-title");
 
 	var cb = function(){
 	    panels_load_panels();
