@@ -5,17 +5,25 @@ function panels_init(){
     panels_load_panels();
 }
 
-function panels_new_panel(){
+function panels_new_panel(data){
 
     var w = '100%';
     var h = 500;
 
-    sketchpad = Raphael.sketchpad("editor", {
-	    width: w,
-	    height: h,
-	    editing: true
-	});
+    var args = {
+	width: w,
+	height: h,
+	editing: true
+    };
 
+    if (data){
+	var strokes = JSON.parse(data);
+	args['strokes'] = strokes;
+    }
+
+    console.log(args);
+
+    sketchpad = Raphael.sketchpad("editor", args);
 }
 
 function panels_save_panel(t){
@@ -85,18 +93,10 @@ function panels_open_canvas(el){
     console.log("open " + key);
 
     var cb = function(rsp){
-	panels_new_panel();	    
-	panels_draw_panel(rsp['data'], rsp['key']);
+	panels_new_panel(rsp['data']);
     };
 
     panels_storage_load(key, cb);
-}
-
-function panels_draw_panel(data, key){
-
-    console.log("DRAW ME");
-    $("#data").val(data);
-    $("#data").attr('data-panel-key', key);
 }
 
 function panels_delete_panel(){
