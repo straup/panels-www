@@ -16,3 +16,15 @@ function panels_storage_save(title, data, cb){
     });
 
 }
+
+function panels_storage_remove(key, cb){
+
+    localforage.removeItem(key, function(rsp){
+	console.log(rsp);
+
+	if (cb){
+	    cb(rsp);
+	}
+    });
+
+}

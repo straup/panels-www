@@ -2,6 +2,7 @@ var sketchpad = null;
 
 function panels_init(){
     panels_new_panel();
+    panels_load_panels();
 }
 
 function panels_new_panel(){
@@ -40,7 +41,7 @@ function panels_save_panel(t){
     panels_storage_save(title, data, cb);
 }
 
-function panels_load_panel(){
+function panels_load_panels(){
 
     localforage.keys(function(keys){
 
@@ -79,18 +80,35 @@ function panels_load_panel(){
 function panels_open_canvas(el){
 
     var key = el.value;
+    console.log("open " + key);
 
     localforage.getItem(key, function(rsp){
-	    panels_new_panel();
+	    console.log(rsp);
+	    panels_new_panel();	    
+	    panels_draw_panel(rsp['data'], rsp['key']);
 
-	    $("#data").val(rsp['data']);
-	    $("#data").attr('data-panel-key', key);
     });
 }
 
+function panels_draw_panel(data, key){
+
+    $("#data").val(data);
+    $("#data").attr('data-panel-key', key);
+}
 
 function panels_delete_panel(){
 
+    var key = '';
+
+    if (! confirm("Are you sure you want to delete this")){
+	return;
+    }
+
+    var cb = function(rsp){
+	panels_new_panel();
+    };
+
+    panels_storage_remove(key, cb);
 }
 
 function panels_upload_canvas(){
