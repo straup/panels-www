@@ -11,9 +11,9 @@
 
     <!--
     <script type="text/javascript" src="javascript/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="javascript/localforage.js"></script>
-    <script type="text/javascript" src="javascript/raphael.js"></script>
-    <script type="text/javascript" src="javascript/raphael.sketchpad.js"></script>
+    <script type="text/javascript" src="javascript/localforage.min.js"></script>
+    <script type="text/javascript" src="javascript/raphael.min.js"></script>
+    <script type="text/javascript" src="javascript/raphael.sketchpad.min.js"></script>
     <script type="text/javascript" src="javascript/panels.ui.js"></script>
     <script type="text/javascript" src="javascript/panels.utils.js"></script>
     <script type="text/javascript" src="javascript/panels.uploads.schedule.js"></script>
@@ -25,7 +25,7 @@
   <body>
     <div id="page">
 
-      <div class="header" onmouseover="panels_ui_show_controls()" x-onmouseout="panels_ui_hide_controls()">
+      <div class="header" onmouseover="panels_ui_show_controls()">
 
 	<ul id="header-controls">
 	  <li><button id="new" class="navbtn" onclick="panels_new_panel()">New</button></li>
@@ -39,12 +39,6 @@
       </div>
 
       <div id="editor"></div>
-
-      <!--
-      <div class="footer" onmouseover="panels_ui_show_controls()" onmouseout="panels_ui_hide_controls()">
-	<ul id="footer-controls"></ul>
-      </div>
-      -->
 
     </div> 
 
