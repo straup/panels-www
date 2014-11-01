@@ -4,8 +4,13 @@
     <title>panels</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
     <link rel="stylesheet" type="text/css" href="css/panels.css" />
+    <script type="text/javascript" src="javascript/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="javascript/raphael.js"></script>
+    <script type="text/javascript" src="javascript/raphael.sketchpad.js"></script>
+    <!--
     <script type="text/javascript" src="javascript/panels.js"></script>
     <script type="text/javascript" src="javascript/panels.utils.js"></script>
+    -->
     <script type="text/javascript" src="javascript/localforage.js"></script>
   </head>
   <body>
@@ -34,8 +39,8 @@
 
       </div>
 
-      <div id="content"></div>
-
+      <!-- <div id="content"></div> -->
+      <div id="editor"></div>
       <div class="footer" onmouseover="showControls()" onmouseout="hideControls()">
 
 	<ul id="footer-controls">
@@ -61,7 +66,20 @@
     <script type="text/javascript">
 
       document.addEventListener( "DOMContentLoaded", function(){
-      panels_init();
+      	//panels_init();
+      
+      var sketchpad = Raphael.sketchpad("editor", {
+      	width: 400,
+      height: 400,
+      editing: true
+      });
+
+      /*
+      sketchpad.change(function() {
+      $("#data").val(sketchpad.json());
+      });
+      */
+
       }, false );
 
     </script>
