@@ -5,35 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
     <link rel="stylesheet" type="text/css" href="css/panels.css" />
     <script type="text/javascript" src="javascript/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="javascript/localforage.js"></script>
     <script type="text/javascript" src="javascript/raphael.js"></script>
     <script type="text/javascript" src="javascript/raphael.sketchpad.js"></script>
-    <!--
-    <script type="text/javascript" src="javascript/panels.js"></script>
+    <script type="text/javascript" src="javascript/panels.ui.js"></script>
     <script type="text/javascript" src="javascript/panels.utils.js"></script>
-    -->
-    <script type="text/javascript" src="javascript/localforage.js"></script>
+    <script type="text/javascript" src="javascript/panels.storage.js"></script>
+    <script type="text/javascript" src="javascript/panels.raphael.js"></script>
   </head>
   <body>
     <div id="page">
 
-      <div class="header" onmouseover="showControls()" onmouseout="hideControls()">
+      <div class="header" onmouseover="panels_ui_show_controls()" onmouseout="panels_ui_hide_controls()">
 
 	<div style="float:right;font-size:small;">panels</div>
 
 	<ul id="header-controls">
-	  <li><select id="load-sel" class="navbtn"  onchange="openCanvas(this)" onmouseover="showControls()" style="display:none;"></select></li>
+	  <li><select id="load-sel" class="navbtn"  onchange="openCanvas(this)" onmouseover="panels_ui_show_controls()" style="display:none;"></select></li>
 
-	  <li><button id="new" class="navbtn" onclick="newCanvas()">New</button></li>
+	  <li><button id="new" class="navbtn" onclick="panels_new_panel()">New</button></li>
 
-	  <li><button id="save" class="navbtn" onclick="saveCanvas()">Save</button></li>
+	  <li><button id="save" class="navbtn" onclick="panels_save_panel()">Save</button></li>
 	  <li><button id="upload" class="navbtn" onclick="uploadCanvas()">Upload</button></li>
-	  <li><button id="delete" class="navbtn" onclick="deleteCanvas()">Delete</button></li>
+	  <li><button id="delete" class="navbtn" onclick="panels_delete_panel()">Delete</button></li>
 
 	  <li>
 
 	  <input type="file" name="file" id="import" />
 	  <button type="submit" onclick="importFile()">Import</button>
-	</li>
+	  </li>
 
 	  </ul>
 
@@ -41,8 +41,9 @@
 
       <!-- <div id="content"></div> -->
       <div id="editor"></div>
-      <div class="footer" onmouseover="showControls()" onmouseout="hideControls()">
+      <div class="footer" onmouseover="panels_ui_show_controls()" onmouseout="panels_ui_hide_controls()">
 
+	  <!--
 	<ul id="footer-controls">
 
 	  <li>
@@ -58,6 +59,7 @@
 	    <span class="palette black" onclick="selectColor(this)"></span>
 	  </li>		
 	</ul>
+	-->
 
       </div>
 
@@ -66,20 +68,7 @@
     <script type="text/javascript">
 
       document.addEventListener( "DOMContentLoaded", function(){
-      	//panels_init();
-      
-      var sketchpad = Raphael.sketchpad("editor", {
-      	width: 400,
-      height: 400,
-      editing: true
-      });
-
-      /*
-      sketchpad.change(function() {
-      $("#data").val(sketchpad.json());
-      });
-      */
-
+      	panels_init();
       }, false );
 
     </script>
