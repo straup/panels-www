@@ -4,6 +4,7 @@ body {
     height:100%;
 
     font-family:sans-serif;
+
     /* prevent text selection on ui */
     user-select: none;
     -webkit-user-select: none;
@@ -16,9 +17,10 @@ body {
     background: url('../images/stripes_bg.gif');
 }
         
-.header, .footer{
+.header {
     background-color: #fff;
 }
+
 .header {
     min-height:1em;
     border-bottom:1px solid #000;
