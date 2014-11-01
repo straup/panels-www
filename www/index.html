@@ -10,6 +10,7 @@
     <script type="text/javascript" src="javascript/raphael.sketchpad.js"></script>
     <script type="text/javascript" src="javascript/panels.ui.js"></script>
     <script type="text/javascript" src="javascript/panels.utils.js"></script>
+    <script type="text/javascript" src="javascript/panels.uploads.schedule.js"></script>
     <script type="text/javascript" src="javascript/panels.storage.js"></script>
     <script type="text/javascript" src="javascript/panels.raphael.js"></script>
   </head>
@@ -29,47 +30,30 @@
 	  <li><button id="upload" class="navbtn" onclick="uploadCanvas()">Upload</button></li>
 	  <li><button id="delete" class="navbtn" onclick="panels_delete_panel()">Delete</button></li>
 
+	  <!--
 	  <li>
-
 	  <input type="file" name="file" id="import" />
 	  <button type="submit" onclick="importFile()">Import</button>
 	  </li>
+	  -->
 
 	  </ul>
 
       </div>
 
-      <!-- <div id="content"></div> -->
       <div id="editor"></div>
+
       <div class="footer" onmouseover="panels_ui_show_controls()" onmouseout="panels_ui_hide_controls()">
-
-	  <!--
-	<ul id="footer-controls">
-
-	  <li>
-	    <span class="palette white" onclick="selectColor(this)"></span>
-	  </li>	
-	  <li>
-	    <span class="palette grey" onclick="selectColor(this)"></span>
-	  </li>
-	  <li>
-	    <span class="palette blue" onclick="selectColor(this)"></span>
-	  </li>
-	  <li>
-	    <span class="palette black" onclick="selectColor(this)"></span>
-	  </li>		
-	</ul>
-	-->
-
+	<ul id="footer-controls"></ul>
       </div>
 
     </div> 
 
     <script type="text/javascript">
 
-      document.addEventListener( "DOMContentLoaded", function(){
+      document.addEventListener("DOMContentLoaded", function(){
       	panels_init();
-      }, false );
+      }, false);
 
     </script>
 
