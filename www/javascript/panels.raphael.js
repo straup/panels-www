@@ -5,9 +5,9 @@ function panels_init(){
     panels_load_panels();
 }
 
-function panels_new_panel(data, key){
+function panels_new_panel(item, key){
 
-    var w = '100%';
+    var w = window.innerWidth;
     var h = window.innerHeight * 2;	// what is the simplest thing...
 
     var args = {
@@ -16,20 +16,28 @@ function panels_new_panel(data, key){
 	editing: true
     };
 
-    if (data){
+    if (item){
 
 	try {
-	    var strokes = JSON.parse(data);
+	    var strokes = JSON.parse(item['data']);
 	    args['strokes'] = strokes;
 	}
 
 	catch (e){
 
-	    alert("Failed to load that document because " + e);
+	    panels_ui_error("Failed to load that document because " + e);
 
-	    if (confirm("Should it be removed?")){
+	    if (panels_ui_confirm("Should it be removed?")){
 		panels_delete_panel(key);
 	    }
+	}
+
+	if ((item['width']) && (item['width'] > args['width'])){
+	    args['width'] = item['width'];
+	}
+
+	if ((item['height']) && (item['height'] > args['height'])){
+	    args['height'] = item['height'];
 	}
     }
 
@@ -42,19 +50,19 @@ function panels_new_panel(data, key){
 
 function panels_save_panel(){
 
-    var data = sketchpad.json();
+    var json = sketchpad.json();
 
-    if (panels_is_empty(data)){
-	alert("empty");
+    if (panels_is_empty(json)){
+	panels_ui_error("There's nothing to save");
 	return false;
     }
 
     var title = $("#editor").attr("data-panel-title");
 
-    title = prompt("What would you like to call this?", title);
+    title = panels_ui_prompt("What would you like to call this?", title);
     
     if ((! title) || (title == '')){
-	alert("You need to give this a name, silly.");
+	panels_ui_error("You need to give this a name, silly.");
 	return false;
     }
     
@@ -62,7 +70,17 @@ function panels_save_panel(){
 	panels_load_panels();
     };
     
-    panels_storage_save(title, data, cb);
+    var ed = $("#editor");
+    var h = ed.height();
+    var w = ed.width();
+
+    var item = {
+	'data': json,
+	'height': h,
+	'width': w,
+    };
+
+    panels_storage_save(title, item, cb);
 }
 
 function panels_load_panels(){
@@ -106,8 +124,8 @@ function panels_open_canvas(el){
 
     var key = el.value;
 
-    var cb = function(rsp){
-	panels_new_panel(rsp['data'], key);
+    var cb = function(item){
+	panels_new_panel(item, key);
     };
 
     panels_storage_load(key, cb);
@@ -121,8 +139,7 @@ function panels_delete_panel(key){
     
     if (key){
 
-	if (! confirm("Are you sure you want to delete " + key + "?")){
-	    alert("Unable to figure out what to delete...");
+	if (! panels_ui_confirm("Are you sure you want to delete " + key + "?")){
 	    return false;
 	}
 
@@ -135,7 +152,7 @@ function panels_delete_panel(key){
 
     else {
 
-	if (! confirm("Are you sure you want to delete this?")){
+	if (! panels_ui_confirm("Are you sure you want to delete this?")){
 	    return false;
 	}
     }
@@ -148,11 +165,14 @@ function panels_upload_panel(){
     var data = sketchpad.json();
 
     if (panels_is_empty(data)){
+	panels_ui_error("there is nothing to upload");
 	return false;
     }
 
     var svg = panels_generate_svg(data);
     console.log(svg);
+
+    panels_ui_error("uploads are still not working");
     return false;
 
     panels_upload_schedule_upload(svg);

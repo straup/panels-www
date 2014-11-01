@@ -1,3 +1,19 @@
+function panels_ui_success(msg){
+    alert(msg);
+}
+
+function panels_ui_error(msg){
+    alert(msg);
+}
+
+function panels_ui_confirm(msg){
+    return confirm(msg);
+}
+
+function panels_ui_prompt(msg, d){
+    return prompt(msg, d);
+}
+
 function panels_ui_show_controls(){
 
     var h = document.getElementById("header-controls");

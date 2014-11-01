@@ -1,14 +1,11 @@
-function panels_storage_save(title, data, cb){
+function panels_storage_save(title, item, cb){
 
     var dt = new Date();
     var ts = dt.getTime();
 
-    var value = {
-	'created': ts,
-	'data': data
-    };
+    item['created'] = ts;
     
-    localforage.setItem(title, value, function(rsp){
+    localforage.setItem(title, item, function(rsp){
 
 	if (cb){
 	    cb(rsp);
