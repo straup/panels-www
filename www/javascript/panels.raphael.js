@@ -25,7 +25,6 @@ function panels_new_panel(data, key){
 
 	catch (e){
 
-	    console.log("failed to load " + key);
 	    alert("Failed to load that document because " + e);
 
 	    if (confirm("Should it be removed?")){
@@ -35,9 +34,13 @@ function panels_new_panel(data, key){
     }
 
     sketchpad = Raphael.sketchpad("editor", args);
+
+    if (key){
+	$("#editor").attr("data-panel-title", key);
+    }
 }
 
-function panels_save_panel(t){
+function panels_save_panel(){
 
     var data = sketchpad.json();
 
@@ -46,18 +49,16 @@ function panels_save_panel(t){
 	return false;
     }
 
-    var title = prompt("What would you like to call this?", t);
+    var title = $("#editor").attr("data-panel-title");
 
+    title = prompt("What would you like to call this?", title);
+    
     if ((! title) || (title == '')){
 	alert("You need to give this a name, silly.");
 	return false;
     }
     
     var cb = function(rsp){
-
-	console.log("SAVE");
-	console.log(rsp);
-
 	panels_load_panels();
     };
     
@@ -104,10 +105,8 @@ function panels_load_panels(){
 function panels_open_canvas(el){
 
     var key = el.value;
-    console.log("open " + key);
 
     var cb = function(rsp){
-	console.log("NEW W/ " + key);
 	panels_new_panel(rsp['data'], key);
     };
 
@@ -115,6 +114,15 @@ function panels_open_canvas(el){
 }
 
 function panels_delete_panel(key){
+
+    if (! key){
+	key = $("#editor").attr("data-panel-title");
+    }
+    
+    if (! key){
+	alert("Unable to figure out what to delete...");
+	return false;
+    }
 
     if (! confirm("Are you sure you want to delete " + key + "?")){
 	return;
