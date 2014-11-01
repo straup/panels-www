@@ -11,15 +11,15 @@ browser.
 ## Uploading files
 
 There are also incomplete hooks for uploading a sketch, as an SVG document
-consisting of one or more [path elements](https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths) to a remote server. By "incomplete"
-I mean it totally works (and uses localforage [to cache uploads](http://www.aaronland.info/weblog/2014/09/22/desire/#upload) in case there
+consisting of one or more [path
+elements](https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths) to a
+remote server. If necessary, it is left to the remote server to convert the SVG to an image using
+a tool like [ws-raster](https://github.com/straup/java-ws-raster) or equivalent.
+
+By "incomplete hooks" I mean it totally works (and uses localforage [to cache uploads](http://www.aaronland.info/weblog/2014/09/22/desire/#upload) in case there
 are network errors) but for a simple(r) interface to configure the details of
 that remote server. This includes stuff like its URL, authentication and all the
 other stuff that are specific to a given user.
-
-Sketches are converted to SVG before sending them to a remote server. If
-necessary, it is left to the remote server to convert the SVG to an image using
-a tool like [ws-raster](https://github.com/straup/java-ws-raster) or equivalent.
 
 ## To Do
 
