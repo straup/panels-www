@@ -2,7 +2,8 @@
 
 `panels` is a simple web-based sketching application built on top of Ian Li's
 SVG [Raphael SketchPad](http://ianli.com/sketchpad/) and Mozilla's
-[localforage](https://github.com/mozilla/localforage) storage system.
+[localforage](https://github.com/mozilla/localforage) library. Sketches
+can be saved (and re-loaded (and deleted)) to the browser's local storage database.
 
 Unless you are interested in uploading sketches to a remote server `panels` has
 no server-side dependencies and can be run as-is in any old (modern-ish) web
