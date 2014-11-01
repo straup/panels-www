@@ -77,7 +77,7 @@ function panels_save_panel(){
     var item = {
 	'data': json,
 	'height': h,
-	'width': w,
+	'width': w
     };
 
     panels_storage_save(title, item, cb);
@@ -175,7 +175,7 @@ function panels_upload_panel(){
     panels_ui_error("uploads are still not working");
     return false;
 
-    panels_upload_schedule_upload(svg);
+    // panels_upload_schedule_upload(svg);
 }
 
 function panels_generate_svg(data){
