@@ -8,7 +8,7 @@ function panels_init(){
 function panels_new_panel(data, key){
 
     var w = '100%';
-    var h = window.innerHeight;
+    var h = window.innerHeight * 2;	// what is the simplest thing...
 
     var args = {
 	width: w,
@@ -119,21 +119,28 @@ function panels_delete_panel(key){
 	key = $("#editor").attr("data-panel-title");
     }
     
-    if (! key){
-	alert("Unable to figure out what to delete...");
-	return false;
+    if (key){
+
+	if (! confirm("Are you sure you want to delete " + key + "?")){
+	    alert("Unable to figure out what to delete...");
+	    return false;
+	}
+
+	var cb = function(){
+	    panels_load_panels();
+	};
+	
+	panels_storage_remove(key, cb);
     }
 
-    if (! confirm("Are you sure you want to delete " + key + "?")){
-	return;
+    else {
+
+	if (! confirm("Are you sure you want to delete this?")){
+	    return false;
+	}
     }
 
-    var cb = function(rsp){
-	panels_new_panel();
-	panels_load_panels();
-    };
-
-    panels_storage_remove(key, cb);
+    panels_new_panel();
 }
 
 function panels_upload_panel(){
