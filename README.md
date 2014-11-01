@@ -1,6 +1,6 @@
 # panels-www
 
-'panels' is a simple web-based sketching application built on top of NAME's
+'panels' is a simple web-based sketching application built on top of Ian Li's
 SVG [sketchpad](http://ianli.com/sketchpad/) and Mozilla's
 [localforage](https://github.com/mozilla/localforage) storage system.
 
