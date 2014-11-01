@@ -8,7 +8,7 @@ function panels_init(){
 function panels_new_panel(data, key){
 
     var w = '100%';
-    var h = 500;
+    var h = window.innerHeight;
 
     var args = {
 	width: w,
@@ -136,7 +136,7 @@ function panels_delete_panel(key){
     panels_storage_remove(key, cb);
 }
 
-function panels_upload_canvas(){
+function panels_upload_panel(){
 
     var data = sketchpad.json();
 
@@ -144,9 +144,43 @@ function panels_upload_canvas(){
 	return false;
     }
 
-    // convert data to SVG
+    var svg = panels_generate_svg(data);
+    console.log(svg);
+    return false;
 
-    panels_upload_schedule_upload(data);
+    panels_upload_schedule_upload(svg);
+}
+
+function panels_generate_svg(data){
+
+    data = JSON.parse(data);
+    var count = data.length;
+
+    var svg = '<?xml version="1.0" standalone="no"?>';
+    svg += '<svg xmlns="http://www.w3.org/2000/svg">';
+
+    for (var i=0; i < count; i++){
+	var el = data[i];
+	svg += '<path d="';
+	svg += el['path'];
+	svg += '" stroke="';
+	svg += el['stroke'];
+	svg += '" stroke-width="';
+	svg += el['stroke-width'];
+	svg += '" stroke-opacity="';
+	svg += el['stroke-opacity'];
+	svg += '" stroke-linecap="';
+	svg += el['stroke-linecap'];
+	svg += '" stroke-linejoin="';
+	svg += el['stroke-linejoin'];
+	svg += '" fill="';
+	svg += el['fill'];
+	svg += '" />';
+    }
+
+    svg += '</svg>';
+
+    return svg;
 }
 
 function panels_is_empty(data){

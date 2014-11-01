@@ -7,7 +7,7 @@ function panels_ui_show_controls(){
 	h.style.display = 'inline';
     }
 
-    if (getComputedStyle(f).display == 'none'){
+    if ((f) && (getComputedStyle(f).display == 'none')){
 	f.style.display = 'inline';
     }
 
@@ -23,7 +23,7 @@ function panels_ui_hide_controls(){
 	h.style.display = 'none';
     }
 
-    if (getComputedStyle(f).display != 'none'){
+    if ((f) && (getComputedStyle(f).display != 'none')){
 	f.style.display = 'none';
     }
 
