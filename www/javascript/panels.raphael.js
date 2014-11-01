@@ -36,6 +36,7 @@ function panels_save_panel(t){
     
     var cb = function(rsp){
 	console.log(rsp);
+	panels_load_panels();
     };
     
     panels_storage_save(title, data, cb);
@@ -43,7 +44,7 @@ function panels_save_panel(t){
 
 function panels_load_panels(){
 
-    localforage.keys(function(keys){
+    var cb = function(keys){
 
 	var count = keys.length;
 
@@ -73,8 +74,9 @@ function panels_load_panels(){
 	sel.innerHTML = html;
 
 	sel.style.display = 'block';
-    });
+    };
 
+    panels_storage_list(cb);
 }
 
 function panels_open_canvas(el){
@@ -82,16 +84,17 @@ function panels_open_canvas(el){
     var key = el.value;
     console.log("open " + key);
 
-    localforage.getItem(key, function(rsp){
-	    console.log(rsp);
-	    panels_new_panel();	    
-	    panels_draw_panel(rsp['data'], rsp['key']);
+    var cb = function(rsp){
+	panels_new_panel();	    
+	panels_draw_panel(rsp['data'], rsp['key']);
+    };
 
-    });
+    panels_storage_load(key, cb);
 }
 
 function panels_draw_panel(data, key){
 
+    console.log("DRAW ME");
     $("#data").val(data);
     $("#data").attr('data-panel-key', key);
 }
@@ -106,6 +109,7 @@ function panels_delete_panel(){
 
     var cb = function(rsp){
 	panels_new_panel();
+	panels_load_panels();
     };
 
     panels_storage_remove(key, cb);

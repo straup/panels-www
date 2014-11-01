@@ -17,6 +17,17 @@ function panels_storage_save(title, data, cb){
 
 }
 
+function panels_storage_load(key, cb){
+
+    localforage.getItem(key, function(rsp){
+	    console.log(rsp);
+	    
+	    if (cb){
+		cb(rsp);
+	    }
+    });
+}
+
 function panels_storage_remove(key, cb){
 
     localforage.removeItem(key, function(rsp){
@@ -27,4 +38,8 @@ function panels_storage_remove(key, cb){
 	}
     });
 
+}
+
+function panels_storage_list(cb){
+    localforage.keys(cb);
 }
