@@ -50,3 +50,11 @@ body {
     display: none;
     float:left;
 }
+
+#header-source {
+    display:none !important;
+}
+
+#header-stuff {
+    display:none !important;
+}

@@ -223,6 +223,20 @@ function panels_generate_svg(data){
     return svg;
 }
 
+function panels_view_source(){
+
+    var data = sketchpad.json();
+
+    if (panels_is_empty(data)){
+	return false;
+    }
+
+    var svg = panels_generate_svg(data);
+    // https://stackoverflow.com/questions/1219860/html-encoding-in-javascript-jquery
+    var enc = $('<div/>').text(svg).html();
+    $("#svg").html(enc);
+}
+
 function panels_is_empty(data){
 
     if (! data){
