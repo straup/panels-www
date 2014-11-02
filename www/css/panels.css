@@ -50,7 +50,7 @@ body {
 }
 
 #header-upload {
-    display: none !important;
+    /* display: none !important; */
 }
 
 #header-select {

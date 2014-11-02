@@ -3,6 +3,11 @@ var sketchpad = null;
 function panels_init(){
     panels_new_panel();
     panels_load_panels();
+
+    if (panels_uploads_configured()){
+	$("#header-upload").show();
+    }
+
 }
 
 function panels_new_panel(item, key){
@@ -55,7 +60,6 @@ function panels_new_panel(item, key){
     else {
 	$("#editor").removeAttr("data-panel-title");
 	$("#header-delete").hide();
-
     }
 
     $("#header-source").show();
@@ -182,6 +186,11 @@ function panels_delete_panel(key){
 
 function panels_upload_panel(){
 
+    if (typeof(panels_custom_prepare_upload) != 'function'){
+	panels_ui_error("uploads have not been configured");
+	return false;
+    }
+
     var data = sketchpad.json();
 
     if (panels_is_empty(data)){
@@ -190,12 +199,7 @@ function panels_upload_panel(){
     }
 
     var svg = panels_generate_svg(data);
-    console.log(svg);
-
-    panels_ui_error("uploads are still not working");
-    return false;
-
-    // panels_upload_schedule_upload(svg);
+    panels_uploads_schedule_upload(svg);
 }
 
 function panels_generate_svg(data){
