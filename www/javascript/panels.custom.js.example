@@ -1,0 +1,16 @@
+function panels_custom_prepare_upload(file, cb){
+
+    var data = new FormData();
+    data.append(file', file);
+
+    // any other stuff you need to define
+
+    var endpoint = 'https://example.com/upload/';
+
+    var rsp = {'endpoint': endpoint, 'formdata': data};
+    cb(rsp);
+}
+
+function panels_custom_upload_ok(rsp){
+    console.log(rsp);
+}

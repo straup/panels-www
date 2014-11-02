@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+  <head>
+    <title>panels</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
+    <link rel="stylesheet" type="text/css" href="css/panels.css" />
+
+    <!--
+    <script type="text/javascript" src="javascript/panels.dependencies.min.js"></script>
+    <script type="text/javascript" src="javascript/panels.combined.min.js"></script>
+    -->
+
+    <script type="text/javascript" src="javascript/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="javascript/localforage.min.js"></script>
+    <script type="text/javascript" src="javascript/raphael.min.js"></script>
+    <script type="text/javascript" src="javascript/raphael.sketchpad.min.js"></script>
+    <script type="text/javascript" src="javascript/panels.ui.js"></script>
+    <script type="text/javascript" src="javascript/panels.utils.js"></script>
+    <script type="text/javascript" src="javascript/panels.uploads.schedule.js"></script>
+    <script type="text/javascript" src="javascript/panels.storage.js"></script>
+    <script type="text/javascript" src="javascript/panels.raphael.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="page">
+
+      <div class="header">
+
+	<ul id="header-controls">
+
+	  <li id="header-select"><select id="load-sel" class="navbtn"  onchange="panels_open_canvas(this)" onmouseover="panels_ui_show_controls()" style="display:none;"></select></li>
+
+	  <li id="header-new"><button id="new" class="navbtn" onclick="panels_new_panel()">nw</button></li>
+	  <li id="header-save"><button id="save" class="navbtn" onclick="panels_save_panel()">sv</button></li>
+	  <li id="header-delete"><button id="delete" class="navbtn" onclick="panels_delete_panel()">del</button></li>
+	  <li id="header-upload"><button id="upload" class="navbtn" onclick="panels_upload_panel()">upl</button></li>
+	  <li id="header-source"><button id="save" class="navbtn" onclick="panels_view_source()">src</button></li>
+	  <li id="header-editor"><button id="save" class="navbtn" onclick="panels_view_editor()">ed</button></li>
+
+	  </ul>
+
+      </div>
+
+      <div id="editor"></div>
+      <pre id="view-source"></pre>
+
+    </div> 
+
+    <script type="text/javascript">
+
+      document.addEventListener("DOMContentLoaded", function(){
+      	panels_init();
+      }, false);
+
+    </script>
+
+  </body>
+</html>
