@@ -1,3 +1,6 @@
 *~
+www/.htaccess
 www/index.html
+www/offline.html
+www/offline.appcache
 www/javascript/panels.custom.js
