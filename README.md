@@ -33,8 +33,8 @@ passing a dictionary containing two keys:
 * **endpoint** is a fully-qualified URL of where to send an HTTP POST request
 * **formdata** is a [FormData]() object containing a reference to the file and any other parameters required by the endpoint
 
-	# For example assume a file called panels.custom.js
-	# www/javascript/panels.custom.js is explicitly ignored by the .gitgnore file.
+	// For example assume a file called panels.custom.js
+	// www/javascript/panels.custom.js is explicitly ignored by the .gitgnore file.
 
 	function panels_custom_prepare_upload(file, cb){
 
