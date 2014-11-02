@@ -11,10 +11,10 @@ way to think about things is being like sketching with a pen. The default settin
 
 Unless you are interested in uploading sketches to a remote server `panels` has
 no server-side dependencies and can be run as-is in any old (modern-ish) web
-browser.
+browser. The only thing you'll need to do is copy the `www/index.html.example` file to
+`www/index.html`.
 
-The only thing you'll need to do is copy the `www/index.html.example` file to
-`www/index.html`. The reason you need to do this is because `www/index.html` is
+The reason you need to do this is because `www/index.html` is
 explicitly forbidden from being included in this repository. That might seen a
 bit strange for a web-application but is necessary because it prevents any
 custom changes that a person makes to enable uploads (discussed below) from
