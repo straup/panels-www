@@ -27,6 +27,11 @@ function panels_new_panel(item, key){
 	}
     }
 
+    return panels_load_panel(item, key);
+}
+
+function panels_load_panel(item, key){
+
     var w = window.innerWidth;
     var h = window.innerHeight;
 
@@ -200,7 +205,7 @@ function panels_delete_panel(key){
 	}
     }
 
-    panels_new_panel();
+    panels_load_panel();
 }
 
 function panels_upload_panel(){
