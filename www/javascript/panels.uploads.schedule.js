@@ -29,10 +29,8 @@ function panels_uploads_schedule_upload(data){
 		    }
 		    
 		    var cb = function(rsp){
-
-			endpoint = rsp['endpoint'];
-			formdata = rsp['formdata'];
-
+			var endpoint = rsp['endpoint'];
+			var formdata = rsp['formdata'];
 			panels_uploads_schedule_make_it_so(endpoint, formdata, pending_id);
 		    };
 
@@ -50,8 +48,6 @@ function panels_uploads_schedule_make_it_so(endpoint, formdata, pending_id){
     req.open("POST", endpoint, true);
 
     req.onload = function(e){
-
-	console.log(req);
 
 	if (req.status == 200){
 
@@ -72,6 +68,10 @@ function panels_uploads_schedule_make_it_so(endpoint, formdata, pending_id){
 
     };
 
+    req.onerror = function(e){
+	panels_ui_error("Hrm... there was a problem contacting the remote server.");
+    };
+    
     req.send(formdata);
     return false;
 }

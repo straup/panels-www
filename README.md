@@ -21,10 +21,38 @@ elements](https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths) to a
 remote server. If necessary, it is left to the remote server to convert the SVG to an image using
 a tool like [ws-raster](https://github.com/straup/java-ws-raster) or equivalent.
 
-By "incomplete hooks" I mean it totally works (and uses localforage [to cache uploads](http://www.aaronland.info/weblog/2014/09/22/desire/#upload) in case there
-are network errors) but for a simple(r) interface to configure the details of
-that remote server. This includes stuff like its URL, authentication and all the
-other stuff that are specific to a given user.
+By "incomplete hooks" I mean it works in principle (and uses localforage [to
+cache uploads](http://www.aaronland.info/weblog/2014/09/22/desire/#upload) in
+case there are network errors) but hasn't been rigorously tested yet.
+
+The code looks for a `panels_custom_prepare_upload` function which you need to
+define and load in a Javascript file of your own. The function is passed a
+`File` object and a callback. The function is expected to invoke the callback
+passing a dictionary containing two keys:
+
+* **endpoint** is a fully-qualified URL of where to send an HTTP POST request
+* **formdata** is a [FormData]() object containing a reference to the file and any other parameters required by the endpoint
+
+	# For example assume a file called panels.custom.js
+	# www/javascript/panels.custom.js is explicitly ignored by the .gitgnore file.
+
+	function panels_custom_prepare_upload(file, cb){
+
+		var data = new FormData();
+		data.append('file', file);
+
+		// Any other parameters you need to pass
+
+		var endpoint = 'https://your-server.example.com/upload/';
+
+		var rsp = {'endpoint': endpoint, 'formdata': data};
+		cb(rsp);
+	}
+
+	function panels_custom_upload_ok(rsp){
+		panels_ui_success("Success!");
+		console.log(rsp);
+	}
 
 ## To Do
 
