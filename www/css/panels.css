@@ -52,9 +52,9 @@ body {
 }
 
 #header-source {
-    display:none !important;
+    display:none;
 }
 
 #header-stuff {
-    display:none !important;
+    display:none;
 }

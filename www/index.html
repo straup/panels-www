@@ -31,7 +31,7 @@
 	  <li id="header-new"><button id="new" class="navbtn" onclick="panels_new_panel()">New</button></li>
 	  <li id="header-save"><button id="save" class="navbtn" onclick="panels_save_panel()">Save</button></li>
 	  <li id="header-source"><button id="save" class="navbtn" onclick="panels_view_source()">Source</button></li>
-	  <li id="header-stuff"><button id="save" class="navbtn" onclick="panels_view_source()">Stuff</button></li>
+	  <li id="header-stuff"><button id="save" class="navbtn" onclick="panels_view_stuff()">Stuff</button></li>
 	  <li id="header-delete"><button id="delete" class="navbtn" onclick="panels_delete_panel()">Delete</button></li>
 	  <li id="header-upload"><button id="upload" class="navbtn" onclick="panels_upload_panel()">Upload</button></li>
 	  <li id="header-select"><select id="load-sel" class="navbtn"  onchange="panels_open_canvas(this)" onmouseover="panels_ui_show_controls()" style="display:none;"></select></li>
@@ -40,8 +40,8 @@
 
       </div>
 
-      <div id="svg"></div>
       <div id="editor"></div>
+      <pre id="svg"></pre>
 
     </div> 
 

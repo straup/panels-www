@@ -48,12 +48,19 @@ function panels_new_panel(item, key){
     if (key){
 	$("#editor").attr("data-panel-title", key);
 	$("#header-delete").show();
+
+	$("#header-show").hide();
     }
 
     else {
 	$("#editor").removeAttr("data-panel-title");
 	$("#header-delete").hide();
+
     }
+
+    $("#header-source").show();
+    $("#header-stuff").hide();
+
 }
 
 function panels_save_panel(){
@@ -196,8 +203,8 @@ function panels_generate_svg(data){
     data = JSON.parse(data);
     var count = data.length;
 
-    var svg = '<?xml version="1.0" standalone="no"?>';
-    svg += '<svg xmlns="http://www.w3.org/2000/svg">';
+    var svg = '<?xml version="1.0" standalone="no"?>\n';
+    svg += '<svg xmlns="http://www.w3.org/2000/svg">\n';
 
     for (var i=0; i < count; i++){
 	var el = data[i];
@@ -215,7 +222,7 @@ function panels_generate_svg(data){
 	svg += el['stroke-linejoin'];
 	svg += '" fill="';
 	svg += el['fill'];
-	svg += '" />';
+	svg += '" />\n';
     }
 
     svg += '</svg>';
@@ -224,6 +231,10 @@ function panels_generate_svg(data){
 }
 
 function panels_view_source(){
+
+	 $("#editor").hide();
+	$("#header-source").hide();
+	$("#header-stuff").show();
 
     var data = sketchpad.json();
 
@@ -235,6 +246,16 @@ function panels_view_source(){
     // https://stackoverflow.com/questions/1219860/html-encoding-in-javascript-jquery
     var enc = $('<div/>').text(svg).html();
     $("#svg").html(enc);
+    $("#svg").show();
+}
+
+function panels_view_stuff(){
+
+	 $("#svg").html("");
+	 $("#svg").hide();
+	 $("#editor").show();
+	$("#header-source").show();
+	$("#header-stuff").hide();
 }
 
 function panels_is_empty(data){
