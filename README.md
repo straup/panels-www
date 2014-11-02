@@ -7,7 +7,9 @@ can be saved (and re-loaded (and deleted)) to the browser's local storage databa
 
 Raphael SketchPad exposes a number of "canvas" and "pen" related options. None
 of them are available in `panels`. They might be one day but for now the easiest
-way to think about things is being like sketching with a marker. There is no undo.
+way to think about things is being like sketching with a pen. There is no undo.
+
+The default settings for the "pen" are 1-pixel wide with an opacity of 60 percent.
 
 Unless you are interested in uploading sketches to a remote server `panels` has
 no server-side dependencies and can be run as-is in any old (modern-ish) web
