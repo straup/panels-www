@@ -73,6 +73,10 @@ different for everyone but the thing to understand about appcache is that it is
 simultaneous picky and conservative about what it caches and what it refreshes
 (or more often doesn't) including any authentication or security tokens.
 
+In theory something _like_ [Twitter's
+xAuth](https://dev.twitter.com/oauth/xauth) model could be made to work with an
+offline application but at the moment that is nothing more than idle speculation.
+
 ## Uploading files
 
 There are also incomplete hooks for uploading a sketch, as an SVG document
