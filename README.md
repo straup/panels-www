@@ -6,7 +6,9 @@ can be saved to (and re-loaded (and deleted) from) the browser's local storage d
 
 Raphael SketchPad exposes a number of "canvas" and "pen" related options. None
 of them are available in `panels`. They might be one day but for now the easiest
-way to think about things is being like sketching with a pen. The default settings for the "pen" are 1-pixel wide with an opacity of 60 percent. There is no undo.
+way to think about things is being like sketching with a pen. The default
+settings for the "pen" are 1-pixel wide with an opacity of 60 percent. There is
+no undo.
 
 `panels` uses [Scalable Vector Graphics (SVG)](https://developer.mozilla.org/en-US/docs/Web/SVG) under the hood so all of your
 sketches can be view source-ed allowing them to be exported as a set of drawing
@@ -30,6 +32,36 @@ explicitly forbidden from being included in version control. That might seen a
 bit strange for a web-application but is necessary because it prevents any
 custom changes that a person makes to enable uploads (discussed below) from
 being applied to everyone else's stuff.
+
+## Offline mode
+
+`panels` can also be run in offline-mode. Offline mode means that the first time
+you load the webpage it will so something called [the application cache dance](https://developer.mozilla.org/en-US/docs/Web/HTML/Using_the_application_cache)
+with your browser and store all the files needed to run the sketchpad offline.
+
+To get offline mode working you'll need to do the following:
+
+* Rename `www/offline.html.example` to `www/offline.html`
+* Rename `www/offline.appcache.example` to `www/offline.appcache`
+* Ensure that the web server hosting your copy of `panels` is configured to [send the correct mime-type](http://www.html5rocks.com/en/tutorials/appcache/beginner/) for your `offline.appcache` file.
+
+This last part is sort of a pain particularly if you're not used to wrangling
+web servers. The repository contains a sample
+[.htaccess](https://httpd.apache.org/docs/2.4/howto/htaccess.html) file which
+contains the necessary instructions to tell the Apache webserver what to
+do. Many web-hosting servers allow you define your own `.htaccess` files on a
+per-directory basis. If yours does all you should need to do is:
+
+* Rename `www/offline.htaccess.example` to `www/.htaccess`
+
+If you're not using Apache then you will need to consult your web server
+documentation to figure out how to tell it to "tell the browser that anything ending in
+'.appcache' has the content-type (or mime-type) 'text/cache-manifest'".
+
+Note that there is nothing special about the filenames `offline.html` or
+`offline.appcache`. You can name them whatever you'd like but be aware that the
+latter is referenced in the former so if you change its name you'll need to
+update the pointer.
 
 ## Uploading files
 
