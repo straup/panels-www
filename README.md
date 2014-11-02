@@ -14,6 +14,10 @@ instructions, in plain text. This is one of those things that never seems very
 important until it is (at which point it's usually too late) so there's a handy
 button for doing just that on every sketch. 
 
+## Demo
+
+[https://straup.github.io/panels-www/demo/](https://straup.github.io/panels-www/demo/)
+
 ## Set up
 
 Unless you are interested in uploading sketches to a remote server `panels` has
