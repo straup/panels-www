@@ -1,19 +1,34 @@
 var sketchpad = null;
 
 function panels_init(){
+
     panels_new_panel();
     panels_load_panels();
 
-    if (panels_uploads_configured()){
-	$("#header-upload").show();
+    // why is this necessary...
+    $("#header-upload").hide();
+
+    if (panels_uploads_schedule_configured()){
+	panels_uploads_schedule_init();
     }
 
 }
 
 function panels_new_panel(item, key){
 
+    if (sketchpad){
+	var json = sketchpad.json();
+
+	if (! panels_is_empty(json)){
+	    
+	    if (! panels_ui_confirm("You've started a sketch. Do you want to overwrite it?")){
+		return false;
+	    }
+	}
+    }
+
     var w = window.innerWidth;
-    var h = window.innerHeight * 2;	// what is the simplest thing...
+    var h = window.innerHeight;
 
     var args = {
 	width: w,

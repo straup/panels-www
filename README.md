@@ -26,7 +26,7 @@ browser. The only thing you'll need to do is copy the `www/index.html.example` f
 `www/index.html`.
 
 The reason you need to do this is because `www/index.html` is
-explicitly forbidden from being included in this repository. That might seen a
+explicitly forbidden from being included in version control. That might seen a
 bit strange for a web-application but is necessary because it prevents any
 custom changes that a person makes to enable uploads (discussed below) from
 being applied to everyone else's stuff.

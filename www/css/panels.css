@@ -4,7 +4,7 @@ body {
     height:100%;
 
     font-family:sans-serif;
-    background: url('../images/stripes_bg.gif');
+
 }
         
 .header {
@@ -50,7 +50,7 @@ body {
 }
 
 #header-upload {
-    display: none !important;
+    display: none;
 }
 
 #header-select {
@@ -65,8 +65,13 @@ body {
     display:none;
 }
 
+#editor {
+	border-bottom: 3px solid #bbb;
+    background: url('../images/stripes_bg.gif');
+}
+
 #view-source {
-	     padding: 1em;	     
+     padding: 1em;	     
 }
 
 @media only screen 

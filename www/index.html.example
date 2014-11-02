@@ -21,8 +21,6 @@
     <script type="text/javascript" src="javascript/panels.storage.js"></script>
     <script type="text/javascript" src="javascript/panels.raphael.js"></script>
 
-
-
   </head>
   <body>
     <div id="page">
