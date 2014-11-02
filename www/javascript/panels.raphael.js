@@ -50,6 +50,10 @@ function panels_new_panel(item, key){
 
     sketchpad = Raphael.sketchpad("editor", args);
 
+    var pen = sketchpad.pen();
+    pen.width(1);
+    pen.opacity(.6);
+
     if (key){
 	$("#editor").attr("data-panel-title", key);
 	$("#header-delete").show();
