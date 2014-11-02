@@ -27,11 +27,11 @@ case there are network errors) but hasn't been rigorously tested yet.
 
 The code looks for a `panels_custom_prepare_upload` function which you need to
 define and load in a Javascript file of your own. The function is passed a
-`File` object and a callback. The function is expected to invoke the callback
+[File](https://developer.mozilla.org/en-US/docs/Web/API/File) object and a callback. The function is expected to invoke the callback
 passing a dictionary containing two keys:
 
 * **endpoint** is a fully-qualified URL of where to send an HTTP POST request
-* **formdata** is a [FormData]() object containing a reference to the file and any other parameters required by the endpoint
+* **formdata** is a [FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData) object containing a reference to the file and any other parameters required by the endpoint
 
 For example assume a file called `panels.custom.js` which defines the following functions:
 
