@@ -41,10 +41,18 @@ function panels_new_panel(item, key){
 	}
     }
 
+    $("#editor").children().remove();
+
     sketchpad = Raphael.sketchpad("editor", args);
 
     if (key){
 	$("#editor").attr("data-panel-title", key);
+	$("#header-delete").show();
+    }
+
+    else {
+	$("#editor").removeAttr("data-panel-title");
+	$("#header-delete").hide();
     }
 }
 
@@ -67,6 +75,10 @@ function panels_save_panel(){
     }
     
     var cb = function(rsp){
+
+	$("#editor").attr("data-panel-title", title);
+	$("#header-delete").show();
+
 	panels_load_panels();
     };
     
@@ -107,9 +119,14 @@ function panels_load_panels(){
 	}
 
 	var sel = document.getElementById('load-sel');
+	sel.style.display = 'block';
 	sel.innerHTML = html;
 
-	sel.style.display = 'block';
+	var li = document.getElementById('header-select');
+	var display = (count) ? 'inline': 'none';
+	
+	console.log(count + " : " + display);
+	li.style.display = display;
     };
 
     panels_storage_list(cb);

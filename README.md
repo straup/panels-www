@@ -30,6 +30,16 @@ Currently there is no way to distinguish one-finger versus two-finger touch
 events which means that there is no way to pan or scroll a canvas on a
 (typically) mobile device. Instead all touch events are interpretted as draw events.
 
+Maybe. There's no ability (or plan) to share drawings between devices so there's
+something nice about the enforced constraint of the screen size. On the other
+hand it might be sort of nice to be able to "grow" the canvas. We'll see.
+
+### Remove the need for jQuery
+
+jQuery is used in a handful of places in `raphael.sketchpad.js` which has caused
+me to use it in the `panels` Javascript code. I love jQuery but it is probably
+overkill for this project so it will eventually be removed.
+
 ## See also
 
 * http://ianli.com/sketchpad/

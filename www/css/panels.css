@@ -34,10 +34,19 @@ body {
 }
 
 #header-controls li {
-	display:inline !important; 
+	display:inline;
 	list-style-type: none;	
 }
 
 #header-controls li select {
-	display:inline !important;
+	display:none;
+}
+
+#header-upload {
+    display: none !important;
+}
+
+#header-select {
+    display: none;
+    float:left;
 }
