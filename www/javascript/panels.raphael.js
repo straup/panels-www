@@ -59,7 +59,7 @@ function panels_new_panel(item, key){
     }
 
     $("#header-source").show();
-    $("#header-stuff").hide();
+    $("#header-editor").hide();
 
 }
 
@@ -108,7 +108,7 @@ function panels_load_panels(){
 
 	var count = keys.length;
 
-	var html = '<option value="-1">...</option>';
+	var html = '<option value="-1">opn</option>';
 
 	var re_pending = /^pending_(.*)/;
 
@@ -234,7 +234,7 @@ function panels_view_source(){
 
 	 $("#editor").hide();
 	$("#header-source").hide();
-	$("#header-stuff").show();
+	$("#header-editor").show();
 
     var data = sketchpad.json();
 
@@ -250,13 +250,13 @@ function panels_view_source(){
     $("#view-source").show();
 }
 
-function panels_view_stuff(){
+function panels_view_editor(){
 
 	 $("#view-source").html("");
 	 $("#view-source").hide();
 	 $("#editor").show();
 	$("#header-source").show();
-	$("#header-stuff").hide();
+	$("#header-editor").hide();
 }
 
 function panels_is_empty(data){

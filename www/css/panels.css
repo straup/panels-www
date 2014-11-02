@@ -4,15 +4,6 @@ body {
     height:100%;
 
     font-family:sans-serif;
-
-    /*
-    user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    -ms-touch-action: none;
-    */
-
     background: url('../images/stripes_bg.gif');
 }
         
@@ -51,6 +42,7 @@ body {
 
 #header-controls li select {
 	display:inline !important;
+	/* this doesn't seem to work yet */
 	/* https://developer.mozilla.org/en-US/docs/Web/CSS/-moz-appearance */
 	-webkit-appearance: button !important;
 	-moz-appearance:button !important;
@@ -69,10 +61,19 @@ body {
     display:none;
 }
 
-#header-stuff {
+#header-editor {
     display:none;
 }
 
 #view-source {
 	     padding: 1em;	     
+}
+
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+
+    .navbtn {
+	width:14%;
+    }
 }
