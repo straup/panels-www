@@ -3,7 +3,7 @@
 `panels` is a simple web-based sketching application built on top of Ian Li's
 SVG [Raphael SketchPad](http://ianli.com/sketchpad/) and Mozilla's
 [localforage](https://github.com/mozilla/localforage) library. Sketches
-can be saved (and re-loaded (and deleted)) to the browser's local storage database.
+can be saved to (and re-loaded (and deleted) from) the browser's local storage database.
 
 Raphael SketchPad exposes a number of "canvas" and "pen" related options. None
 of them are available in `panels`. They might be one day but for now the easiest
