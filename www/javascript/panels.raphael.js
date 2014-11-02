@@ -125,7 +125,6 @@ function panels_load_panels(){
 	var li = document.getElementById('header-select');
 	var display = (count) ? 'inline': 'none';
 	
-	console.log(count + " : " + display);
 	li.style.display = display;
     };
 
