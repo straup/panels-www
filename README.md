@@ -30,14 +30,15 @@ browser. The only thing you'll need to do is copy the `www/index.html.example` f
 The reason you need to do this is because `www/index.html` is
 explicitly forbidden from being included in version control. That might seen a
 bit strange for a web-application but is necessary because it prevents any
-custom changes that a person makes to enable uploads (discussed below) from
+custom changes that a person makes to enable uploads ([discussed below](#uploading-files)) from
 being applied to everyone else's stuff.
 
 ## Offline mode
 
 `panels` can also be run in offline-mode. Offline mode means that the first time
-you load the webpage it will so something called [the application cache dance](https://developer.mozilla.org/en-US/docs/Web/HTML/Using_the_application_cache)
-with your browser and store all the files needed to run the sketchpad offline.
+you load the webpage it will so something called [the application cache
+dance](https://developer.mozilla.org/en-US/docs/Web/HTML/Using_the_application_cache)
+(sometimes just called "appcache") with your browser and store all the files needed to run the sketchpad offline.
 
 To get offline mode working you'll need to do the following:
 
@@ -55,13 +56,22 @@ per-directory basis. If yours does all you should need to do is:
 * Rename `www/offline.htaccess.example` to `www/.htaccess`
 
 If you're not using Apache then you will need to consult your web server
-documentation to figure out how to tell it to "tell the browser that anything ending in
-'.appcache' has the content-type (or mime-type) 'text/cache-manifest'".
+documentation to figure out how to tell it to "instruct the browser that anything ending in
+_.appcache_ has the content-type (or mime-type) _text/cache-manifest_".
 
 Note that there is nothing special about the filenames `offline.html` or
 `offline.appcache`. You can name them whatever you'd like but be aware that the
 latter is referenced in the former so if you change its name you'll need to
 update the pointer.
+
+Note also that you should be very careful (and very patient) if you try to get
+offline-mode to work with the tweaks necessary to make uploading files to a
+remote server working. In fact, it's probably not worth doing at all. Really it
+depends on the level of authentication and authorization you need or want to
+allow a web application to store data on a remote server. That's going to
+different for everyone but the thing to understand about appcache is that it is
+simultaneous picky and conservative about what it caches and what it refreshes
+(or more often doesn't) including any authentication or security tokens.
 
 ## Uploading files
 
