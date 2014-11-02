@@ -245,14 +245,15 @@ function panels_view_source(){
     var svg = panels_generate_svg(data);
     // https://stackoverflow.com/questions/1219860/html-encoding-in-javascript-jquery
     var enc = $('<div/>').text(svg).html();
-    $("#svg").html(enc);
-    $("#svg").show();
+
+    $("#view-source").html(enc);
+    $("#view-source").show();
 }
 
 function panels_view_stuff(){
 
-	 $("#svg").html("");
-	 $("#svg").hide();
+	 $("#view-source").html("");
+	 $("#view-source").hide();
 	 $("#editor").show();
 	$("#header-source").show();
 	$("#header-stuff").hide();
