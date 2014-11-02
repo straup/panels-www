@@ -1,0 +1,79 @@
+body {
+    margin:0px;
+    width:100%;
+    height:100%;
+
+    font-family:sans-serif;
+    background: url('../images/stripes_bg.gif');
+}
+        
+.header {
+    background-color: #fff;
+    min-height:1em;
+    border-bottom:1px solid #bbb;
+    padding:.75em;
+    padding-left:1em;
+    padding-bottom:.75em;
+}
+
+.navbtn {
+   background-color:#bbb;
+   color:#fff;
+   padding:.5em;
+   font-weight:100;
+   font-size:.8em;
+   border: .5px dotted #fff;
+   border-radius:0px;
+   width:10%;
+   margin-right:1%;
+   text-align:left;
+}
+
+#header-controls {
+	display:inline;
+	margin:0px;
+	padding:0px;
+}
+
+#header-controls li {
+	display:inline;
+	list-style-type: none;	
+}
+
+#header-controls li select {
+	display:inline !important;
+	/* this doesn't seem to work yet */
+	/* https://developer.mozilla.org/en-US/docs/Web/CSS/-moz-appearance */
+	-webkit-appearance: button !important;
+	-moz-appearance:button !important;
+	appearance: button !important;
+}
+
+#header-upload {
+    display: none !important;
+}
+
+#header-select {
+    display: none;
+}
+
+#header-source {
+    display:none;
+}
+
+#header-editor {
+    display:none;
+}
+
+#view-source {
+	     padding: 1em;	     
+}
+
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+
+    .navbtn {
+	width:14%;
+    }
+}
