@@ -28,7 +28,7 @@ elements](https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths) to a
 remote server. If necessary, it is left to the remote server to convert the SVG to an image using
 a tool like [ws-raster](https://github.com/straup/java-ws-raster) or equivalent.
 
-By "incomplete hooks" I mean it works in principle (and uses localforage [to
+By "incomplete hooks" I mean they work in principle (and uses localforage [to
 cache uploads](http://www.aaronland.info/weblog/2014/09/22/desire/#upload) in
 case there are network errors) but hasn't been rigorously tested yet.
 
