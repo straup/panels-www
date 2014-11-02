@@ -34,11 +34,22 @@
   of Ian Li's <a href="http://ianli.com/sketchpad/">Raphael SketchPad</a> and Mozilla's
 <a href="https://github.com/mozilla/localforage">localforage</a> library.</p>
 
-<p>Sketches can be saved to (and re-loaded (and deleted) from) the browser's local storage database.</p>
+<p>Sketches can be saved to (and re-loaded (and deleted) from) the browser's
+  local storage database.</p>
 
 <p>Raphael SketchPad exposes a number of "canvas" and "pen" related options. None
 of them are available in <code>panels</code>. They might be one day but for now the easiest
 way to think about things is being like sketching with a pen. The default settings for the "pen" are 1-pixel wide with an opacity of 60 percent. There is no undo.</p>
+
+<p><code>panels</code>
+  uses <a href="https://developer.mozilla.org/en-US/docs/Web/SVG">Scalable
+  Vector Graphics (SVG)</a> under
+  the hood so all of your sketches can
+  be <a href="http://www.xml.com/lpt/a/1539#id764105">view source</a>-ed allowing them to be exported as a set of <a href="https://twitter.com/search?q=sol%20lewitt%20from%3Athisisaaronland">drawing instructions</a>, in
+  plain text. This
+  is one of those things that never seems very important until it is (at which
+  point it's usually too late) so there's a
+  handy button for doing just that on every sketch.</p>
 
 <h3>Is there a demo?</h3>
 
