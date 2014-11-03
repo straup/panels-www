@@ -3,9 +3,9 @@ CACHE MANIFEST
 
 CACHE:
 offline.html
-css/panels.css
-javascript/panels.dependencies.min.js
-javascript/panels.combined.min.js
+panels.css
+panels.dependencies.min.js
+panels.combined.min.js
 
 # NETWORK:
 # FALLBACK:
