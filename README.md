@@ -16,6 +16,10 @@ instructions, in plain text. This is one of those things that never seems very
 important until it is (at which point it's usually too late) so there's a handy
 button for doing just that on every sketch. 
 
+## Important
+
+This project has been replaced by [aaronland/fingerprint](https://github.com/aaronland/fingerprint) and is no longer maintained.
+
 ## Demo
 
 [https://straup.github.io/panels-www/demo/](https://straup.github.io/panels-www/demo/)
